@@ -3,52 +3,68 @@
 const btnSearch = document.querySelector('.btn-search')
 const countryCard = document.querySelector('.country-card')
 const countryInput = document.querySelector('.search')
+const form = document.querySelector('#form')
 
 const BASE_URL = 'https://restcountries.com/v3.1/name/'
 
-btnSearch.addEventListener('click', e => {
-  console.log(countryInput.value)
-  // take input as API search parameter
-  checkInputString()
-
-  // call api
-  getCountryData()
-
-  // put data into cardHTML
-  // buildCountryCard(data)
-
-  insertCardData(cardHTML)
-
-  countryInput.value = ''
+form.addEventListener('submit', async e => {
+  e.preventDefault()
+  processUserInput()
 })
 
+btnSearch.addEventListener('click', async e => {
+  e.preventDefault()
+  processUserInput()
+})
+
+const processUserInput = async () => {
+  const userInput = checkInputString(countryInput.value)
+  let countryData = await getCountryData(userInput)
+
+  countryData = buildCountryCard(countryData)
+  insertCardData(countryData)
+
+  countryInput.value = ''
+}
+
 const getCountryData = async countryName => {
-  // built search param
-  // fecth data from api
-  // destructure data and return it
+  const res = await fetch(`${BASE_URL}${countryName}`)
+  const [data] = await res.json()
+
+  return data
 }
 
-const checkInputString = countryName => {
+const checkInputString = userInput => {
   // check string is not empty
-  // convert to lower case
-  // return string
+  if (userInput === '') {
+    alert('Please insert a country.')
+  } else {
+    const userInputClean = userInput.toLowerCase()
+    return userInputClean
+  }
 }
 
-/* const buildCountryCard = (data) => {
-  const cardHTML =  `
+const buildCountryCard = data => {
+  const cardHTML = `
   <article class="country">
-    <img class="country__img" src="${}" />
+    <img class="country__img" src="${data.flags.png}" />
     <div class="country__data">
-      <h3 class="country__name">COUNTRY${}</h3>
-      <h4 class="country__region">REGION${}</h4>
-      <p class="country__row"><span>👫</span>POP people${}</p>
-      <p class="country__row"><span>🗣️</span>LANG${}</p>
-      <p class="country__row"><span>💰</span>CUR${}</p>
+      <h3 class="country__name">${data.name.common}</h3>
+      <h4 class="country__region">${data.region}</h4>
+      <p class="country__row"><span>👫</span>${(
+        data.population / 1000000
+      ).toFixed(2)} Mio</p>
+      <p class="country__row"><span>🗣️</span>${
+        Object.values(data.languages)[0]
+      }</p>
+      <p class="country__row"><span>💰</span>${
+        Object.values(data.currencies)[0].name
+      }</p>
     </div>
   </article>
   `
   return cardHTML
-} */
+}
 
 const insertCardData = cardHTML => {
   countryCard.innerHTML = cardHTML

@@ -12,32 +12,28 @@ html {
 body {
   font-family: system-ui;
   color: #555;
-  background-color: #f7f7f7;
+  background-color: lightgray;
   min-height: 100vh;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 header {
-  padding: 10rem;
-  display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
 }
 
 .welcome {
-  padding: 2.5rem 5rem;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 5rem;
+  padding: 1rem 2rem;
+  font-size: 4rem;
   text-align: center;
 }
 
 .search {
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid black;
   border-radius: 50px;
   font-family: inherit;
@@ -63,9 +59,6 @@ header {
   color: white;
   background-color: orangered;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .btn-search:active {
@@ -73,9 +66,11 @@ header {
 }
 
 .container {
-  display: flex;
-  flex-flow: row;
+  padding: 2rem;
+  position: relative;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .country-card {
@@ -83,10 +78,13 @@ header {
   font-size: 2rem;
   opacity: 0;
   transition: opacity 0.5s;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .country {
-  background-color: #fff;
+  background-color: rgb(246, 244, 244);
   box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
   font-size: 1.8rem;
   width: 30rem;
