@@ -21,7 +21,7 @@ body {
 
 header {
   padding: 10rem;
-  justify-content: flex-end;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -43,6 +43,7 @@ header {
   font-family: inherit;
   font-size: 3rem;
   padding: 1.5rem 3rem;
+  margin: 1.5rem 3rem;
   color: black;
 }
 
@@ -54,13 +55,30 @@ header {
   outline: none;
 }
 
+.btn-search {
+  border: none;
+  font-size: 2rem;
+  padding: 2rem 5rem;
+  border-radius: 2rem;
+  color: white;
+  background-color: orangered;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-search:active {
+  transform: scale(0.98);
+}
+
 .container {
   display: flex;
   flex-flow: row;
   align-items: center;
 }
 
-.countries {
+.country-card {
   display: flex;
   font-size: 2rem;
   opacity: 0;
@@ -74,24 +92,6 @@ header {
   width: 30rem;
   border-radius: 0.7rem;
   margin: 0 3rem;
-}
-
-.neighbour::before {
-  content: 'Neighbour country';
-  width: 100%;
-  position: absolute;
-  top: -4rem;
-
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #888;
-}
-
-.neighbour {
-  transform: scale(0.8) translateY(1rem);
-  margin-left: 0;
 }
 
 .country__img {
@@ -127,20 +127,6 @@ header {
   display: inline-block;
   margin-right: 2rem;
   font-size: 2.4rem;
-}
-
-.btn-country {
-  border: none;
-  font-size: 2rem;
-  padding: 2rem 5rem;
-  border-radius: 2rem;
-  color: white;
-  background-color: orangered;
-  cursor: pointer;
-}
-
-.btn-country:active {
-  transform: scale(0.98);
 }
 
 .images {
